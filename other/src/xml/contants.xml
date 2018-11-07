@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><contains>
+	<linkman>
+		<name>Willing</name>
+		<age>18</age>
+		<email>1562660267@qq.com</email>
+		<adress>火星</adress>
+	</linkman>
+	<linkman>
+		<name>Lucy</name>
+		<age>17</age>
+		<email>shabi.com</email>
+		<adress>地球</adress>
+	</linkman>
+</contains>
