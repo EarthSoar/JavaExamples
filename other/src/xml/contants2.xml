@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><contants>
+	<linkman linkman="886">
+		<name>lihua</name>
+		<age>11</age>
+		<email>23@23.com</email>
+		<adress>haha</adress>
+	</linkman>
+<linkman id="886"><name>lihua</name><age>11</age><email>23@23.com</email><adress>haha</adress></linkman></contants>
