@@ -4,16 +4,29 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   version="3.0"
-  metadata-complete="true">
-	<servlet>
-		<!--别名-->
-		<servlet-name>Hello</servlet-name>
-		<!--类的全限定名-->
-		<servlet-class>hello.HelloServlet</servlet-class>
-	</servlet>
-	<!-- 向外暴露一个资源名称，供外界访问，资源名称前面必须有  / -->
-	<servlet-mapping>
-		<servlet-name>Hello</servlet-name>	
-		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
+  metadata-complete="false">
+  <context-param>
+  	<param-name>name</param-name>
+  	<param-value>Willing</param-value>
+  </context-param>
+  
+  <!-- 定义全局的错误页面 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error/404.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error/505.jsp</location>
+  </error-page>
+  
+<!--   <servlet>
+  		<servlet-class></servlet-class>
+  		<servlet-name></servlet-name>
+  		<init-param>
+  			<param-name></param-name>
+  			<param-value></param-value>
+  		</init-param>
+  </servlet> -->
 </web-app>
