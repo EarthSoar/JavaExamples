@@ -10,10 +10,10 @@
 </head>
 <body>
 	<form action="/student/save" method="POST">
-		<input type="hidden" name="id" value="${id}"/>
+		<input type="hidden" name="id" value="${stu.id}"/>
 		姓名:<input type="text" name="name" value="${stu.name}"/><br/>
 		年龄:<input type="number" name="age" value="${stu.age}"/><br/>
-		<input type="submit" value='保存学生'>
+		<input type="submit" value='${stu == null?"保存学生":"修改学生"}'>
 	</form>
 </body>
 </html>
