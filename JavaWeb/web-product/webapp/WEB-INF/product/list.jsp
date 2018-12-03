@@ -14,7 +14,7 @@
 		<tr>
 			<th>ID</th>
 			<th>名称</th>
-			<th>分类编码</th>
+			<th>分类编号</th>
 			<th>零售价</th>
 			<th>供应商</th>
 			<th>制造商</th>
@@ -35,7 +35,7 @@
 			<td align="center">${pro.costPrice}</td>
 			<td align="center">
 				<a href="/product?cmd=delete&id=${pro.id}">删除</a>
-				<a href="/product?cmd=edit#">编辑</a>
+				<a href="/product?cmd=edit&id=${pro.id}">编辑</a>
 			</td>
 		</tr>
 		</c:forEach>
