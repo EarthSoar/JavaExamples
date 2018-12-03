@@ -21,7 +21,7 @@ class ProductDAOTest {
 
 	@Test
 	void testUpdate() {
-		//dao.update(new Product(id, productName, brand, supplier, salePrice, costPrice, cutoff, dir_id));
+		
 	}
 
 	@Test
@@ -38,5 +38,4 @@ class ProductDAOTest {
 			System.out.println(product);
 		}
 	}
-
 }

@@ -5,12 +5,13 @@ import java.math.BigDecimal;
 public class Product {
 	private Long id;
 	private String productName;
-	private String brand;
-	private String supplier;
+	private String brand;//制造商
+	private String supplier;//供应商
 	private BigDecimal salePrice;
 	private BigDecimal costPrice;
 	private Double cutoff;
 	private Long dir_id;
+	public Product() {}
 	public Long getId() {
 		return id;
 	}
