@@ -16,7 +16,11 @@ public class ProductQueryObject extends QueryObject {
 	private String productName;
 	private BigDecimal minSalePrice;
 	private BigDecimal maxSalePrice;
+	private Long dirId;
+	private String keyword;
 	
+
+
 	//定制自身查询条件和查询SQL语句中所需要的参数
 	protected void customizedQuery() {
 		if(StringUtil.hasLength(productName)) {
@@ -27,6 +31,12 @@ public class ProductQueryObject extends QueryObject {
 		}
 		if(maxSalePrice != null) {
 			super.addQuery(" SalePrice < ? ", maxSalePrice);
+		}
+		if(dirId != null && dirId != -1) {
+			super.addQuery(" dir_id = ? ", dirId);
+		}
+		if(StringUtil.hasLength(keyword)) {
+			super.addQuery(" productName LIKE ? OR brand LIKE ? ", "%"+keyword+"%","%"+keyword+"%");
 		}
 	}
 	
@@ -57,5 +67,17 @@ public class ProductQueryObject extends QueryObject {
 	public void setMaxSalePrice(BigDecimal maxSalePrice) {
 		this.maxSalePrice = maxSalePrice;
 	}
-	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public Long getDirId() {
+		return dirId;
+	}
+	public void setDirId(Long dirId) {
+		this.dirId = dirId;
+	}
+
 }

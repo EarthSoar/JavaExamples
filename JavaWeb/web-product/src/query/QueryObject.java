@@ -1,6 +1,7 @@
 package query;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -40,9 +41,9 @@ public class QueryObject implements IQuery {
 	}
 	
 	//添加查询查询条件和参数
-	protected void addQuery(String conditions,Object params) {
-		condition.add(conditions);
-		param.add(params);
+	protected void addQuery(String conditions,Object...params) {
+		condition.add("("+conditions+")");
+		param.addAll(Arrays.asList(params));
 	}
 	@Override
 	public List<Object> getParameters() {
