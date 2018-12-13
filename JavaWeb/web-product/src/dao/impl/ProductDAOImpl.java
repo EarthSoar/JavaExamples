@@ -2,10 +2,13 @@ package dao.impl;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import damain.Product;
 import dao.IProductDAO;
+import page.PageResult;
+import query.ProductQueryObject;
 import template.IResultSetHandler;
 import template.JdbcTemplate;
 
@@ -29,7 +32,7 @@ public class ProductDAOImpl implements IProductDAO {
 	public void update(Product pro) {
 		String sql = "UPDATE product SET productName = ?,dir_id = ?,salePrice = ?,supplier = ?,brand = ?,cutoff = ?,costPrice = ? WHERE id = ?";
 		Object params[] = {pro.getProductName(),pro.getDir_id(),pro.getSalePrice(),pro.getSupplier(),pro.getBrand(),
-				pro.getCutoff(),pro.getCostPrice() };
+				pro.getCutoff(),pro.getCostPrice(),pro.getId() };
 		JdbcTemplate.update(sql, params);
 	}
 
@@ -41,9 +44,12 @@ public class ProductDAOImpl implements IProductDAO {
 	}
 
 	@Override
-	public List<Product> list() {
-		String sql = "SELECT * FROM product";
-		return JdbcTemplate.qurey(sql, new ProductResultHandle());
+	public List<Product> list(ProductQueryObject qo) {
+		StringBuilder sql = new StringBuilder(80);
+		sql.append("SELECT * FROM product" + qo.getQuery());
+		System.out.println(sql);
+		System.out.println(qo.getParameters());
+		return JdbcTemplate.qurey(sql.toString(), new ProductResultHandle(),qo.getParameters().toArray());
 	}
 
 	private Product getObject(ResultSet rs) throws Exception {
@@ -67,5 +73,31 @@ public class ProductDAOImpl implements IProductDAO {
 			}
 			return list;
 		}
+	}
+	
+	
+	@Override
+	public PageResult queryPage(Integer currentPage,Integer pageSize) {
+		//-------查询结果总数------------
+		String countSql = "SELECT COUNT(*) FROM product";
+		
+		Integer totalCount = JdbcTemplate.qurey(countSql, new IResultSetHandler<Long>() {
+			@Override
+			public Long handle(ResultSet rs) throws Exception {
+				if(rs.next()) {
+					return rs.getLong(1);
+				}
+				return 0L;
+			}
+		}).intValue();
+		
+		List<?> listData = null;
+		if(totalCount == 0) {//结果总数为0,没有必要查询结果集,返回一个空集合
+			listData = Collections.emptyList();
+		}
+		//-------查询结果集合-----------
+		String dataSql = "SELECT * FROM product LIMIT ?,?";
+		listData = JdbcTemplate.qurey(dataSql, new ProductResultHandle(), (currentPage - 1)*pageSize,pageSize);
+		return new PageResult(listData, totalCount, currentPage, pageSize);
 	}
 }
