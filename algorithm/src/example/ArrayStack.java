@@ -4,10 +4,10 @@ package example;
  * @author Willing
  *
  */
-public class MyStack {
+public class ArrayStack {
 	private Integer arr[];
 	private int size;
-	public MyStack() {
+	public ArrayStack() {
 		arr = new Integer[10];
 	}
 	public void push(Integer ele) {
@@ -25,7 +25,7 @@ public class MyStack {
 		return top;
 	}
 	public static void main(String[] args) {
-		MyStack stack = new MyStack();
+		ArrayStack stack = new ArrayStack();
 		stack.push(11);
 		stack.push(22);
 		stack.push(33);
