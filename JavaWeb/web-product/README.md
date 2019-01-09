@@ -38,6 +38,31 @@
 
 - 测试
 
+### 分页查询
+
+数据较多时在一个页面会看起来会比较困难，所以采用分页设计。
+
+- 创建pageResult封装分页需要的所有信息
+
+  ```java
+  private List<?> listData;//结果集
+  private Integer totalCount;//结果总数
+  
+  private Integer currentPage;//当前页，用户传入
+  private Integer pageSize;//页面大小,用户传入
+  
+  private Integer beginPage = 1;//首页
+  private Integer prevPage;//上一页  :需要计算
+  private Integer nextPage;//下一页 ：需要计算
+  private Integer totalPage;//总页数/末页   :需要计算
+  ```
+
+- 在DAO中改造查询的方法,此时返回的list的范围更加具体，也就是返回的是pageResult中的listData，另外需要用户传入currentPage和pageSize可以进一步封装到QueryObject中，让每一个查询对象都有这两个字段。
+
+- 然后在DAO实现类中实现上面定义的方法，包含查询结果集和查询结果总数。
+
+- 最后测试后台
+
 ## 前台
 
 ### 准备工作
@@ -60,3 +85,8 @@
 - 在Servlet中接收表单中的参数，并且封装到后台的查询对象中。
 - 调用DAO的list(qo)方法,(传入查询对象)共享到jsp中
 
+### 分页查询
+
+在jsp中首页,上一页，下一页前台需要展示的超链还有需要跳转到那一页等元素，把参数传给后台，让Servlet接收请求参数，把当前页和页面大小两个参数设置给查询对象，最后调用后台方法返回一个pageResult共享给jsp。
+
+需要注意的是查询和分页在一起可能会使查询的条件丢失，这是因为这里使用的超链接都是一次新的请求，为了解决这一问题，把翻页的信息放在高级查询的表单中，然后调用js函数来再次提交查询的表单。
