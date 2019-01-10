@@ -9,6 +9,7 @@
 </head>
 <body>
 	<form action="/product?cmd=save" method="POST">
+		<input type="hidden" name="token" value="${sessionScope.TOKEN_IN_SESSION}"/>
 		<input type="hidden" name="id" value="${pro.id}"/>
 		名&nbsp;&nbsp;&nbsp;称:<input type="text" name="productName" value="${pro.productName}"/><br/>
 		分&nbsp;&nbsp;&nbsp;类:

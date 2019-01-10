@@ -80,7 +80,6 @@ public class ProductDAOImpl implements IProductDAO {
 	public PageResult queryPage(Integer currentPage,Integer pageSize) {
 		//-------查询结果总数------------
 		String countSql = "SELECT COUNT(*) FROM product";
-		
 		Integer totalCount = JdbcTemplate.qurey(countSql, new IResultSetHandler<Long>() {
 			@Override
 			public Long handle(ResultSet rs) throws Exception {
