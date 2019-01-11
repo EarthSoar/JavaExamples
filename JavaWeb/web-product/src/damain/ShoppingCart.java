@@ -18,9 +18,9 @@ public class ShoppingCart {
 				cartItem.setNum(cartItem.getNum() + newItem.getNum());
 				return;
 			}
-			// 否则把新的产品对象加入到购物车中
-			items.add(newItem);
 		}
+		// 否则把新的产品对象加入到购物车中
+		items.add(newItem);
 	}
 
 	// 删除购物车中的商品

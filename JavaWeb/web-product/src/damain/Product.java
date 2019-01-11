@@ -15,7 +15,8 @@ public class Product {
 
 	public Product() {
 	}
-	public Product(String productName,BigDecimal salePrice) {
+	public Product(Long id,String productName,BigDecimal salePrice) {
+		this.id = id;
 		this.productName = productName;
 		this.salePrice = salePrice;
 	}

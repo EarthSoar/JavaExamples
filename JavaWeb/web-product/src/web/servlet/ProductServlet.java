@@ -70,8 +70,10 @@ public class ProductServlet extends HttpServlet {
 	private void addCart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 接收请求参数
 		String productName = req.getParameter("productName");
+		productName = new String(productName.getBytes("ISO-8859-1"),"utf-8");
 		BigDecimal salePrice = new BigDecimal(req.getParameter("salePrice"));
-		Product product = new Product(productName,salePrice);
+		Long id = Long.valueOf(req.getParameter("id"));
+		Product product = new Product(id,productName,salePrice);
 		
 		// 调用业务方法处理请求
 		ShoppingCart cart = (ShoppingCart) req.getSession().getAttribute("SHOPPINGCART_IN_SESSION");
@@ -80,7 +82,6 @@ public class ProductServlet extends HttpServlet {
 			req.getSession().setAttribute("SHOPPINGCART_IN_SESSION", cart);// 设置到session作用域供供下次使用, 在结算jsp页面使用
 		}
 		cart.save(new CartItem(product, 1));
-
 		// 控制页面跳转
 		req.setAttribute("succeed", "添加成功");
 		req.getRequestDispatcher("/WEB-INF/product/save.jsp").forward(req, resp);
