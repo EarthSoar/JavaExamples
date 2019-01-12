@@ -6,6 +6,25 @@
   version="3.0"
   metadata-complete="false">
   
+  <listener>
+  	<listener-class>listener.ContextLoaderListener</listener-class>
+  </listener>
+  
+  
+  
+<!--   <filter>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<filter-class>filter.CheckLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping> -->
+  
+  
+  
+  
+  
   <filter>
   	<filter-name>CharacterEncodingFilter</filter-name>
   	<filter-class>filter.CharacterEncodingFilter</filter-class>
