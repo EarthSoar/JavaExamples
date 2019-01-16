@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+	<!-- 
+		action: 一个action对象
+		name: 请求action的资源名称
+		class: action的全限定名称
+		method: action对象需要执行的方法
+	 -->
+	<action name="employee" class="crm.EmployeeAction" method="excute">
+	<!-- 
+		result: 请求之后的结果视图
+		name: action中方法返回的逻辑视图名称
+		type: 跳转方式 请求转发/重定向
+		文本内容: 结果视图 的物理路径
+	 -->	
+		<result name="list" type="dispatcher">/WEB-INF/view/department/list.jsp</result>
+		<result name="input" type="redirect">/WEB-INF/view/employee/input.jsp</result>
+	</action>
+	<action name="department" class="crm.DepartmentAction" method="excute"></action>
+</actions>
