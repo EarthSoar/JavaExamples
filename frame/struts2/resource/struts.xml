@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 常量值的修改 -->
+	<constant name="struts.action.extension" value="action,wocao,"></constant>
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	
+	<package name="checkPkg" extends="struts-default" namespace="/">
+		<!-- 定义拦截器 -->
+		<interceptors>
+			<interceptor name="checkLogin" class="interceptor.CheckLoginInterceptor">
+				<!-- 设置拦截器参数,在拦截器中通过setActionNames() 方法得到参数值 -->
+				<param name="actionNames">login,logon</param>
+			</interceptor>
+			<!-- 拦截器栈：多个拦截器集合  必须包含默认的拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="checkLogin"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- 全局的拦截器引用 , 设置当前package默认引用的拦截器  对所有action都有myStack来拦截-->
+		<default-interceptor-ref name="myStack"/>
+		
+		<!-- 全局结果视图,重定向到登录页面 -->
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+		</global-results>
+		
+		<action name="login" class="interceptor.LoginAction">
+			<!-- 对于login这个Action 不需要做登录检测,  所以不需要引入checkLogin这个拦截器.只需要默认的拦截器 -->
+			<interceptor-ref name="defaultStack"/>
+			<result type="redirectAction">main</result>
+		</action>		
+		<action name="main">
+			<!-- 引用拦截器 -->
+			<interceptor-ref name="checkLogin"/>
+			<result>/welcome.jsp</result>
+		</action>
+	</package>
+	
+	<!--
+		Action多方法调用
+		使用通配符的方式类配置:  通配符:*,可以表示任意字符.
+	 -->
+	<package name="methodPkg" extends="struts-default" namespace="/">
+		<!-- <action name="employee_*" class="more_method.EmployeeAction" method="{1}"></action> -->
+		<action name="*_*" class="more_method.{1}Action" method="{2}"></action>
+	</package>
+	
+	<!-- HelloWorld程序的配置 -->
+ 	<package name="helloPkg" extends="struts-default" namespace="/crm">
+		<action name="hello" class="hello.HelloAction" method="execute">
+			<result name="hi" type="dispatcher">
+				<param name="location">/view/welcome.jsp</param>
+			</result>
+		</action>
+	</package>
+	<package name="actionPkg" extends="struts-default" namespace="/">
+		<action name="action" class="action.Action3">
+			<result>
+				<param name="location">/view/welcome.jsp</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- struts2访问servlet API的三种方式 -->
+	<package name="apiPkg" extends="struts-default" namespace="/">
+		<action name="api" class="servletApi.ServletApiAction2">
+			<result>
+				<param name="location">/view/welcome.jsp</param>
+			</result>
+		</action>
+		<action name="api3" class="servletApi.ServletApiAction3">
+			<result>
+				<param name="location">/view/welcome.jsp</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 获取请求参数的三种方式 -->
+	<package name="loginPkg" extends="struts-default" namespace="/params">
+		<action name="login1" class="parameter.LoginAction1"/>
+		<action name="login2" class="parameter.LoginAction2"/>
+		<action name="login3" class="parameter.LoginAction3"/>
+	</package>
+	
+</struts>
