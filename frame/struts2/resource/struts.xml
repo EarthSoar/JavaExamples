@@ -8,6 +8,7 @@
 	<constant name="struts.action.extension" value="action,wocao,"></constant>
 	<constant name="struts.devMode" value="true"></constant>
 	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<constant name="struts.custom.i18n.resources" value="uploadErrorMsg"></constant>
 	
 	<package name="checkPkg" extends="struts-default" namespace="/">
 		<!-- 定义拦截器 -->
@@ -89,4 +90,42 @@
 		<action name="login3" class="parameter.LoginAction3"/>
 	</package>
 	
+	
+	<!-- 值栈 -->
+	<package name="valueStackPkg" extends="struts-default" namespace="/vs">
+		<action name="vs" class="valueStack.getValueStackAction">
+			<result>/view/vs/welcome.jsp</result>
+		</action>
+		<action name="logon_*" class="validation.LoginAction" method="{1}">
+			<result name="input">/login.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 文件上传 -->
+	<package name="uploadPkg" namespace="/upload" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="fileUpload">
+					<!-- 设置允许上传的文件的拓展名字 -->
+					<param name="allowedExtensions">jpg,png,jpeg,gif</param>
+				</interceptor-ref>
+					<!-- 引用默认拦截器栈,注意默认拦截器中包含fileUpload所有默认拦截器应该放在后面 -->
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 引用拦截器栈 -->
+		<default-interceptor-ref name="myStack"/>
+		<action name="upload" class="upload.UploadAction">
+			<result name="input">/view/upload.jsp</result>
+		</action>
+	</package>
+	
+	<package name="downPkg" extends="struts-default" namespace="/download">
+		<action name="download" class="download.DownLoadAction">
+			<result type="stream">
+				<param name="contentDisposition">attachment;fileName="${fileName}"</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+	</package>
 </struts>
