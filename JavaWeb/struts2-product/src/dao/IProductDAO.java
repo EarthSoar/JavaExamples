@@ -13,6 +13,7 @@ public interface IProductDAO {
 	Product get(Long id);
 	List<Product> list(ProductQueryObject qo);
 	
+	Product getProductByName(String productName);
 	/**
 	 * 查询分页数据
 	 * @param currentPage 当前页
@@ -20,4 +21,7 @@ public interface IProductDAO {
 	 * @return	页面结果对象
 	 */
 	PageResult queryPage(Integer currentPage,Integer pageSize);
+	
+	//高级查询+分页
+	PageResult query(ProductQueryObject qo);
 }

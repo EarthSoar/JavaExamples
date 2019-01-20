@@ -22,6 +22,26 @@ public class QueryObject implements IQuery {
 
 	//封装排序规则和参数："salaPrice",OrderBy.DESC,为了保证顺序需使用LinkedHashMap
 	private Map<String,String> orderByMap = new LinkedHashMap<>();
+	
+	private Integer currentPage = 1;
+	private Integer pageSize = 3;
+	
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+
 	@Override
 	public String getQuery() {
 		StringBuilder sql = new StringBuilder(80);

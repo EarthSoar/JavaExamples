@@ -8,7 +8,9 @@
 <title>货品编辑界面</title>
 </head>
 <body>
+	<s:property value='fieldErrors["product.productName"][0]'/>
 	<s:form namespace="/" action="product_save" theme="simple">
+		<s:hidden name="product.id"/>
 		<table border="1" cellpadding="0" cellspacing="0">
 			<tr>
 				<td>货品分类</td>
@@ -37,11 +39,7 @@
 			<tr>
 				<td>货品分类</td>
 				<td>
-					<select name="dir">
-						<option value="AAA">AAA</option>
-						<option value="BBB">BBB</option>
-						<option value="CCC">CCC</option>
-					</select>
+				<s:select name="product.dir_id" list="#dirs" listKey="id" listValue="dirName" headerKey="-1" headerValue="--请选择--"></s:select>
 				</td>
 			</tr>
 			<tr>  

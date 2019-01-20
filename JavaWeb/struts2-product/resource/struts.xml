@@ -5,11 +5,12 @@
 
 <struts>
     <constant name="struts.devMode" value="true" />
+    <constant name="struts.ui.theme" value="simple" />
     <package name="productPkg" extends="struts-default" namespace="/">
     	<action name="product_*" class="web.action.ProductAction" method="{1}">
     		<result name="list">/WEB-INF/product/list.jsp</result>
     		<result name="input">/WEB-INF/product/input.jsp</result>
-    		<result name="success" type="redirectAction">product</result>
+    		<result name="success" type="redirectAction">product_execute</result>
     	</action>
     </package>
 </struts>

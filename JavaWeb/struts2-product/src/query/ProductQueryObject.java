@@ -18,7 +18,6 @@ public class ProductQueryObject extends QueryObject {
 	private BigDecimal maxSalePrice;
 	private Long dirId;
 	private String keyword;
-	
 
 
 	//定制自身查询条件和查询SQL语句中所需要的参数
