@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ui.theme" value="simple"/>
+    
+    <package namespace="/" name="employeePkg" extends="struts-default">
+    	<interceptors>
+    		<interceptor-stack name="myStack">
+    			<interceptor-ref name="fileUpload">
+    				<param name="allowedExtensions">jpg,png,jpeg,gif</param>
+    			</interceptor-ref>
+    			<interceptor-ref name="defaultStack"/>
+    		</interceptor-stack>
+    	</interceptors>
+    	<default-interceptor-ref name="myStack"></default-interceptor-ref>
+    	<action name="employee_*" class="web.action.EmployeeAction" method="{1}">
+    		<result name="list">/WEB-INF/view/list.jsp</result>
+    		<result name="input">/WEB-INF/view/input.jsp</result>
+    		<result name="success" type="redirectAction">employee_execute</result>
+    	</action>
+    </package>
+</struts>
