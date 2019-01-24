@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="many2one2many">
+	<class name="Employee">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<!-- 外键必须是一致的-->
+		<many-to-one name="dept" column="dept_id"></many-to-one>
+	</class>
+	
+	<class name="Department">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<!-- 属性是一个set集合 -->
+		<!-- incerse表示是否放弃对集合中对象的管理   默认为false表示不放弃管理，true为放弃管理可以减少发送更新的sql -->
+		<set name="emps" inverse="true">
+			<!-- 在many表中生成的外键 -->
+			<key column="dept_id"/>
+			<!-- many方类名 -->
+			<one-to-many class="Employee"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- 连接数据库所需要的五要素 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>		
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///demo</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">admin</property>
+		<property name="hibernate.show_sql">true</property>
+		<!-- 关联需要管理的映射文件 -->  
+		<!-- 
+		<mapping resource="hello/domain/User.hbm.xml"/>
+		<mapping resource="many2one/many2one.hbm.xml"/>
+		<mapping resource="one2many/one2many.hbm.xml"/>
+		 -->
+		<mapping resource="many2one2many/many2one2many.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

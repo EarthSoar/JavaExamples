@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="many2one">
+	<class name="Employee">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<!-- 单向的多对一关系  name many方对应于one方的属性名称，column 是外键 -->
+		<many-to-one name="dept" column="dep_id"/>
+	</class>
+	
+	<class name="Department">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+	</class>
+</hibernate-mapping>
