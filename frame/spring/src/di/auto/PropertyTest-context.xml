@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+	<!-- 自动注入 ： 让Spring按照一定的方式来寻找合适的对象并完成属性注入 -->      
+	
+	<!-- 
+		byName 根据属性名称来注入  ,要求属性名称一定要可以在bean元素中获取到
+		byType 根据类型来找,   要求bean的class元素不能重复 
+		constructor 根据构造器上的参数来注入
+	 -->
+    <bean id="other" class="di.auto.OtherBean"/>
+	<bean id="someBean" class="di.auto.SomeBean" autowire="byName"/>
+</beans>

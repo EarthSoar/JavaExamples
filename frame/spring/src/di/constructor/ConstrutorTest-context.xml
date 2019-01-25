@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+      
+     <!-- 构造器注入 -->
+     <!-- 简单属性 -->
+     <bean id="employee" class="di.constructor.Employee">
+     	<constructor-arg name="username" value="吃了吗"/>
+     	<constructor-arg name="salary" value="100"/>
+     	<constructor-arg name="age" value="20"/>
+     </bean>
+      <!-- 引用类型属性 -->
+      <bean id="employeeDAO" class="di.constructor.EmployeeDAO"/>
+      <bean id="employeeService" class="di.constructor.EmployeeService">
+      	<constructor-arg name="dao" ref="employeeDAO"/>
+      </bean>
+      	
+      <!-- 集合类型 -->
+      <bean id="collection" class="di.constructor.CollectionBean">
+      	<constructor-arg name="set">
+      		<set>
+      			<value>set1</value>
+      			<value>set2</value>
+      		</set>
+      	</constructor-arg>
+      	<constructor-arg name="properties">
+      		<props>
+      			<prop key="K1">V1</prop>
+      			<prop key="K2">V2</prop>
+      			<prop key="k3">V3</prop>
+      		</props>
+      	</constructor-arg>
+      </bean>
+</beans>

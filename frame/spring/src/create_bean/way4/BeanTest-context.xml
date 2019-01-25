@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 静态工厂创建实例
+		class: 工厂 类的全限定名称
+		factory-method:工厂类中得到bean对象的静态方法名
+	 -->
+	
+	<bean id="bean" class="create_bean.way4.ABeanFactory"/>
+</beans>

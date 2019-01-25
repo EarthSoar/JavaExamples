@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        
+     <!-- 简单属性注入-->   
+    <bean id="other" class="di.property.Employee">
+    	<!--  数据类型可以自动转换 -->
+    	<property name="username" value="小啊giao"/>
+    	<property name="salary" value="1000"/>
+    	<property name="age" value="20"/>
+    </bean>
+    
+    <!-- 引用类型属性注入  -->
+    <bean id="dao" class="di.property.EmployeeDAO"/>
+    <bean id="service" class="di.property.EmployeeService">
+    	<property name="dao" ref="dao"></property>
+    </bean>
+    
+    <!-- 集合类型属性注入 -->
+    <bean id="collection" class="di.property.CollectionBean">
+    	<!-- set集合 -->
+		<property name="set">
+			<set>
+				<value>set1</value>
+				<value>set2</value>
+				<value>set3</value>
+			</set>
+		</property>  
+		<!-- List集合 -->
+		<property name="list">
+			<list>
+				<value>list1</value>
+				<value>list2</value>
+				<value>list3</value>
+			</list>
+		</property>  
+		<!-- Map -->
+		<property name="map">
+			<map>
+			  <entry key="k1" value="v1"/>
+			  <entry key="k2" value="v2"/>
+			  <entry key="k3" value="v3"/>
+			</map>
+		</property>
+		<!-- properties文件 -->
+		<property name="properties">
+			<props>
+				<prop key="p1">k1</prop>
+				<prop key="p2">k2</prop>
+				<prop key="p3">k3</prop>
+			</props>
+		</property>
+    </bean>
+    
+</beans>
