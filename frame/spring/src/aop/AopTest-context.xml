@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+         ">
+    
+    <!-- DI 属性注入 -->
+    <context:annotation-config/>
+    <!-- IoC 扫描bean -->
+    <context:component-scan base-package="aop"/>
+    <!-- AOP自动代理 -->
+    <aop:aspectj-autoproxy/>
+
+<!-- 	 <aop:config>
+		what： 做什么增强
+		<aop:aspect ref="txManager">
+			where : 在什么地方增强   execution(<修饰符>? <返回类型> <声明类型>? <方法名>(<参数>) <异常>?)
+			<aop:pointcut expression="execution(* aop.service.*Service.*(..) )" id="txPointcut"/>
+			when: 在什么时候增强  方法前面/后面
+			前置增强  在方法执行之前执行增强
+			<aop:before method="begin" pointcut-ref="txPointcut"/>
+			后置增强 在方法正常执行完毕后执行增强,中间没有异常情况
+			<aop:after-returning method="commit" pointcut-ref="txPointcut"/>
+			异常增强  在抛出异常退出的时候执行方法
+			<aop:after-throwing method="rollback" pointcut-ref="txPointcut" />
+			最终增强  最后必须执行的方法 用释放资源
+			<aop:after method="close" pointcut-ref="txPointcut"/>
+			环绕增强 在方法调用前后自定义 是上面四个的综合
+			<aop:around method="aroundMethod" pointcut-ref="txPointcut"/>
+		</aop:aspect>
+	</aop:config>        -->
+</beans>
